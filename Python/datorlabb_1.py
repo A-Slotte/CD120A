@@ -89,7 +89,8 @@ def approx_sin(x_int, tol, return_mode):
         return p_val
     else:
         return p_val, deg
-
+    
+# Gör grafer till fråga 3.
 def plotGraf():
     my_appval = np.array([])
     e_val = np.array([])
@@ -120,6 +121,7 @@ def plotGraf():
     plt.grid(True)
     plt.show()
 
+# Multiplicera koefficienterna av två polynom.
 def mult_coeffs(coeffs_p, coeffs_q):
     len_p = len(coeffs_p)
     len_q = len(coeffs_q)
@@ -127,12 +129,13 @@ def mult_coeffs(coeffs_p, coeffs_q):
     len_r = len_p + len_q - 1
     coeffs_r = np.array([])
     coeffs_r = np.append(coeffs_r, np.zeros(len_r))
-
+    # i och j är exponenter för koefficienterna. Multiplicera koeficcienterna qx**i * px**j = rx**(i+j). Alltså behöver vi addera produkten till coeffs_r med exponenten i+j.
     for i in range(len_q):
         for j in range(len_p):
-            coeffs_r[i+j] += coeffs_p[j] * coeffs_q[i]
+            coeffs_r[i+j] += coeffs_q[i] * coeffs_p[j]
     return coeffs_r
 
+# Bygger en sträng för att visa polynomet.
 def bygg_polynom(coeffs):
     poly = np.array([])
     for i in range(0, len(coeffs)):
@@ -145,6 +148,7 @@ def bygg_polynom(coeffs):
     s = s.strip("+")
     return s
 
+# Kör script
 def run():
     # Fråga 1:
     print("================Fråga 1================"+"\n"+f"s = {fråga1()}")
@@ -174,13 +178,13 @@ def run():
     # Fråga 4:
     print("================Fråga 4================")
     # Kontroll med numpoys polynomial paket
-    p = np.polynomial.Polynomial([1.0, -2.0, 0.5, 0.0, 0.2])
-    q = np.polynomial.Polynomial([2.0, 5.0])
+    p = np.polynomial.Polynomial([1.0, -2.0, 0.0])
+    q = np.polynomial.Polynomial([1.0, -1.0])
     r = p * q
     print(f"Numpy polynom {r}")
     # Min kod.
-    p_arr = np.array(([1.0, -2.0, 0.5, 0.0, 0.2]))
-    q_arr = np.array(([2.0, 5.0]))
+    p_arr = np.array(([1.0, -1.0]))
+    q_arr = np.array(([1.0, -2.0, 0.0]))
     # Multiplicera koefficienterna av två polynom
     coeffs = mult_coeffs(p_arr, q_arr)
     # bygg_polynom, lägger till x till koeficcienterna.
