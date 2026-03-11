@@ -19,7 +19,7 @@ class DijkstraSP:
             if dist > self.dist_to[node]:
                  continue
             else:
-                 relax(G, node)
+                 self.relax(G, node)
             
     
     def relax(self, G, v): 

@@ -1,5 +1,7 @@
 import numpy as np
 import math as math
+import matplotlib
+matplotlib.use('QtAgg')
 import matplotlib.pyplot as plt
 
 # Uppgifter Talföljder
@@ -8,7 +10,7 @@ import matplotlib.pyplot as plt
 def fråga1():
     s_1 = np.array([]) 
     tot = 0
-    for i in range(1, 16):
+    for i in range(1, 14):
         s_i = 1/i
         s_1 = np.append(s_1, s_i)
         tot += s_i
@@ -61,7 +63,7 @@ def eval_poly(x_int, coeffs_arr):
     p = x_arr * coeffs_arr
     a = np.sum(p)
     return a
-
+# return_mode == "value_only" returnerar endast det approximerade värdet.
 def approx_e_exp(x_int, tol, return_mode):
     coeffs = np.array([])
     deg = -1
@@ -75,7 +77,8 @@ def approx_e_exp(x_int, tol, return_mode):
         return p_val
     else:
         return p_val, deg
-
+    
+# return_mode == "value_only" returnerar endast det approximerade värdet.
 def approx_sin(x_int, tol, return_mode):
     coeffs_sin = np.array([])
     deg = -1
@@ -90,7 +93,11 @@ def approx_sin(x_int, tol, return_mode):
     else:
         return p_val, deg
     
+<<<<<<< Updated upstream
 # Gör grafer till fråga 3.
+=======
+# Plottar graf till fråga 2 och 3
+>>>>>>> Stashed changes
 def plotGraf():
     my_appval = np.array([])
     e_val = np.array([])
@@ -121,7 +128,11 @@ def plotGraf():
     plt.grid(True)
     plt.show()
 
+<<<<<<< Updated upstream
 # Multiplicera koefficienterna av två polynom.
+=======
+# Multiplicerar koefficienter av två polynom
+>>>>>>> Stashed changes
 def mult_coeffs(coeffs_p, coeffs_q):
     len_p = len(coeffs_p)
     len_q = len(coeffs_q)
@@ -129,13 +140,22 @@ def mult_coeffs(coeffs_p, coeffs_q):
     len_r = len_p + len_q - 1
     coeffs_r = np.array([])
     coeffs_r = np.append(coeffs_r, np.zeros(len_r))
+<<<<<<< Updated upstream
     # i och j är exponenter för koefficienterna. Multiplicera koeficcienterna qx**i * px**j = rx**(i+j). Alltså behöver vi addera produkten till coeffs_r med exponenten i+j.
+=======
+    # Platsen i arrayen avgör vilken exponent/grad polynomet har på den platsen. 
+    # Alltså blir i och j exponenter. qx**i * px**j = rx**(i+j)
+>>>>>>> Stashed changes
     for i in range(len_q):
         for j in range(len_p):
             coeffs_r[i+j] += coeffs_q[i] * coeffs_p[j]
     return coeffs_r
 
+<<<<<<< Updated upstream
 # Bygger en sträng för att visa polynomet.
+=======
+# Bygger en sträng för att visa polynomet
+>>>>>>> Stashed changes
 def bygg_polynom(coeffs):
     poly = np.array([])
     for i in range(0, len(coeffs)):
@@ -148,7 +168,11 @@ def bygg_polynom(coeffs):
     s = s.strip("+")
     return s
 
+<<<<<<< Updated upstream
 # Kör script
+=======
+# Kör script.
+>>>>>>> Stashed changes
 def run():
     # Fråga 1:
     print("================Fråga 1================"+"\n"+f"s = {fråga1()}")
@@ -169,15 +193,15 @@ def run():
     print(f"Numpy: {np.exp(2)}")
     # Fråga 3b:
     print("Graden för att approximera sin(5pi/3) med fel mindre än 10^-4")
-    x = np.pi*5/3
+    x = -np.pi/3
     values = approx_sin(x, tol, "grad")
     print(f"Grad: {values[1]}")
     print(f"Min funktion: {values[0]}")
     print(f"Numpy: {np.sin((5*np.pi)/3)}")
-    
     # Fråga 4:
     print("================Fråga 4================")
     # Kontroll med numpoys polynomial paket
+<<<<<<< Updated upstream
     p = np.polynomial.Polynomial([1.0, -2.0, 0.0])
     q = np.polynomial.Polynomial([1.0, -1.0])
     r = p * q
@@ -185,10 +209,20 @@ def run():
     # Min kod.
     p_arr = np.array(([1.0, -1.0]))
     q_arr = np.array(([1.0, -2.0, 0.0]))
+=======
+    p = np.polynomial.Polynomial([2.0, 4.0, 6.0])
+    q = np.polynomial.Polynomial([3.0, 0.0, 0.0, -0.5])
+    r = p * q
+    print(f"Numpy polynom {r}")
+    # Min kod.
+    p_arr = np.array(([2.0, 4.0, 6.0]))
+    q_arr = np.array(([3.0, 0.0, 0.0, -0.5]))
+>>>>>>> Stashed changes
     # Multiplicera koefficienterna av två polynom
     coeffs = mult_coeffs(p_arr, q_arr)
     # bygg_polynom, lägger till x till koeficcienterna.
     print(f"Polynom: {bygg_polynom(coeffs)}")
+
     # Plotta grafer
     plotGraf()
 
